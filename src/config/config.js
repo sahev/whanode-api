@@ -12,7 +12,7 @@ const RESTORE_SESSIONS_ON_START_UP = !!(
 )
 
 const videoMimeTypes = process.env.videoMimeTypes?.split(',')
-const audioMimeTypes = process.env.audioMimeTypes?.split(',') 
+const audioMimeTypes = process.env.audioMimeTypes?.split(',')
 const documentMimeTypes = process.env.documentMimeTypes?.split(',')
 const imageMimeTypes = process.env.imageMimeTypes?.split(',')
 const IGNORE_GROUPS = process.env.IGNORE_GROUPS
@@ -49,11 +49,12 @@ const WEBHOOK_ALLOWED_EVENTS = process.env.WEBHOOK_ALLOWED_EVENTS?.split(',') ||
 const MARK_MESSAGES_READ = !!(
     process.env.MARK_MESSAGES_READ && process.env.MARK_MESSAGES_READ === 'true'
 )
+const NODE_ENV = process.env.NODE_ENV
 
 module.exports = {
     port: PORT,
     token: TOKEN,
-	adminToken: ADMINTOKEN,	
+	adminToken: ADMINTOKEN,
     restoreSessionsOnStartup: RESTORE_SESSIONS_ON_START_UP,
     appUrl: APP_URL,
     log: {
@@ -86,6 +87,6 @@ module.exports = {
 	videoMimeTypes: videoMimeTypes,
 	audioMimeTypes: audioMimeTypes,
 	documentMimeTypes: documentMimeTypes,
-	imageMimeTypes: imageMimeTypes
-
+	imageMimeTypes: imageMimeTypes,
+    env: NODE_ENV
 }
