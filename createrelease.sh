@@ -1,0 +1,1 @@
+sudo docker compose -f docker-compose.release.yml up --build -d
