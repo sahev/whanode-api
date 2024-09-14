@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  whanode-prd:
+  whanode-hml:
     image: whanode-hml
     networks:
       apinetwork:
