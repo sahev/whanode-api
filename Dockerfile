@@ -1,16 +1,21 @@
-FROM node
-WORKDIR /
-RUN git config --global credential.helper store && \
-    git clone https://github.com/renatoiub/whatsapp-hard-api-node.git && \
-    cd whatsapp-hard-api-node && \
-    npm install
+FROM node:lts-alpine as build-stage
+# WORKDIR /
+# RUN git config --global credential.helper store && \
+#     git clone https://github.com/sahev/whanode-api.git && \
+#     cd whatsapp-hard-api-node && \
+#     npm install
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install -f
+COPY . .
 
 ENV AUTO_UPDATE=true
 ENV PROTECT_ROUTES=true
 ENV TOKEN=RANDOM_STRING_HERE
 ENV PORT=3333
 ENV RESTORE_SESSIONS_ON_START_UP=true
-ENV APP_URL=http://localhost:3333
+ENV APP_URL=http://172.20.0.7:3333
 ENV LOG_LEVEL=silent
 ENV videoMimeTypes=video/mp4,video/avi,video/mkv,video/quicktime,video/x-msvideo,video/x-matroska
 ENV audioMimeTypes=audio/mp3,audio/wav,audio/ogg,audio/mpeg
@@ -25,10 +30,7 @@ ENV NODE_ENV=development
 ENV SESSION_SECRET=8e46213be6df58e0702d3e8d4b5cf9ba48a610c3
 ENV COOKIE_SECRET=da71b564a1ed7e998204ca0d7cae38e791ca2154
 
-
-
 EXPOSE $PORT
 
-CMD cd /whatsapp-hard-api-node/ && \
-if [ "$AUTO_UPDATE" = true ]; then git pull ; fi && \
+CMD cd /app/ && \
      npm start
