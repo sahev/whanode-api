@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   whanode-prd:
-    image: whanode-prd
+    image: whanode-hml
     networks:
       apinetwork:
         ipv4_address: 172.20.0.8
