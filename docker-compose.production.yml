@@ -7,7 +7,7 @@ services:
       apinetwork:
         ipv4_address: 172.22.1.8
     ports:
-      - "3333:3333"
+      - "3333:80"
     build:
       context: .
       args:
